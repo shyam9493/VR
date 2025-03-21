@@ -23,24 +23,81 @@ window.onclick = (event) => {
   }
 };
 
-// Handle form submissions
-window.handleLogin = (event) => {
+// Handle Login
+window.handleLogin = async (event) => {
   event.preventDefault();
   const formData = new FormData(event.target);
   const email = formData.get('email');
   const password = formData.get('password');
+
+  console.log("Login attempt with:", email, password); // Debugging
   
-  // Here you would typically make an API call to authenticate
-  console.log('Login attempt:', { email, password });
-  alert('Login functionality will be implemented soon!');
+  try {
+    const response = await fetch("http://localhost:8000/login", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ email, password })
+    });
+
+    const data = await response.json();
+    // console.log("Server response:", data); // Debugging
+    
+
+    if (response.ok) {
+      localStorage.setItem("token", data.token);
+      window.location.href = "dashboard.html";
+    }else {
+      alert(data.error);
+    }
+  } catch (error) {
+    console.error("Login error:", error);
+    alert("An error occurred during login.");
+  }
 };
 
-window.handleRegister = (event) => {
+
+// Handle Register
+window.handleRegister = async (event) => {
   event.preventDefault();
   const formData = new FormData(event.target);
-  const data = Object.fromEntries(formData);
-  
-  // Here you would typically make an API call to register
-  console.log('Registration data:', data);
-  alert('Registration functionality will be implemented soon!');
+  const userData = {
+    name: formData.get("name"),
+    email: formData.get("email"),
+    password: formData.get("password"),
+    bloodGroup: formData.get("bloodGroup"),
+    location: formData.get("location"),
+  };
+
+  console.log("Sending registration data:", userData); // Debugging
+
+  try {
+    const response = await fetch("http://localhost:8000/register", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(userData),
+    });
+
+    const data = await response.json();
+    console.log("Server response:", data); // Debugging
+
+    if (response.ok) {
+      alert("Registration successful! Please log in.");
+      window.closeModal("registerModal");
+    } else {
+      alert(data.error);
+    }
+  } catch (error) {
+    console.error("Registration error:", error);
+    alert("An error occurred during registration.");
+  }
+};
+
+
+
+// Redirect to dashboard if already logged in
+window.onload = () => {
+  const token = localStorage.getItem("token");
+  if (token && window.location.pathname === "/") {
+    window.location.href = "dashboard.html";
+  }
 };

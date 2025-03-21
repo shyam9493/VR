@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - LifeLink</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">LifeLink Dashboard</div>
+        <button onclick="logout()">Logout</button>
+    </nav>
+
+    <section class="user-info">
+        <h2>Welcome, <span id="userName"></span>!</h2>
+        <p>Email: <span id="userEmail"></span></p>
+        <p>Blood Group: <span id="userBloodGroup"></span></p>
+        <p>Location: <span id="userLocation"></span></p>
+    </section>
+
+    <section class="donors">
+        <h2>Available Donors</h2>
+        <input type="text" id="searchBox" placeholder="Search by location..." oninput="filterDonors()">
+        
+        <div id="donorList"></div>
+    </section>
+
+    <script type="module" src="/dashboard.js"></script>
+</body>
+</html>
