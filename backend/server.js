@@ -4,20 +4,15 @@ const path = require("path");
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-// Serve static files from the project root (one level up from backend)
+// Serve static files from the parent directory (where index.html, style.css, and main.js exist)
 app.use(express.static(path.join(__dirname, "..")));
 
-// Route to serve index.html
+// Serve index.html for the root route
 app.get("/", (req, res) => {
     res.sendFile(path.join(__dirname, "..", "index.html"));
 });
- 
 
-app.get('/home',(req,res)=>{
-    res.send("Backend server testing");
-})
-
-// Start the server
+// Start server
 app.listen(PORT, () => {
-    console.log(`Server is running on http://localhost:${PORT}`);
+    console.log(`Server running at http://localhost:${PORT}`);
 });
