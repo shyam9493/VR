@@ -11,6 +11,11 @@ app.use(express.static(path.join(__dirname, "..")));
 app.get("/", (req, res) => {
     res.sendFile(path.join(__dirname, "..", "index.html"));
 });
+ 
+
+app.get('/home',(req,res)=>{
+    res.send("Backend server testing");
+})
 
 // Start the server
 app.listen(PORT, () => {
