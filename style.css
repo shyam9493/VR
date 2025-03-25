@@ -1,0 +1,254 @@
+/* Importing Google Fonts - Poppins */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+body {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  background: linear-gradient(135deg, #ff7e5f, #feb47b); /* Enhanced gradient background */
+  transition: background 0.5s ease-in-out; /* Smooth background transition */
+}
+
+.container {
+  max-width: 750px;
+  width: 100%;
+  background-color: #fff;
+  padding: 40px 50px;
+  border-radius: 15px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1); /* Softer and deeper shadow */
+  animation: fadeIn 0.6s ease-out; /* Smooth fade-in animation */
+}
+
+.container .title {
+  font-size: 32px;
+  font-weight: 600;
+  text-align: center;
+  margin-bottom: 40px;
+  color: #ff6f61; /* Brighter color for emphasis */
+  position: relative;
+}
+
+.container .title::after {
+  content: '';
+  width: 60px;
+  height: 3px;
+  background-color: #ff6f61;
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: 10px;
+  animation: slideIn 0.7s ease-in-out;
+}
+
+@keyframes fadeIn {
+  0% { opacity: 0; transform: scale(0.9); }
+  100% { opacity: 1; transform: scale(1); }
+}
+
+@keyframes slideIn {
+  0% { width: 0; }
+  100% { width: 60px; }
+}
+
+.content form .user-details {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin: 20px 0 12px 0;
+  gap: 20px;
+}
+
+form .user-details .input-box {
+  margin-bottom: 25px;
+  width: calc(50% - 10px);
+  transition: all 0.3s ease-in-out;
+}
+
+form .input-box span.details {
+  display: block;
+  font-weight: 500;
+  margin-bottom: 5px;
+  color: #444;
+}
+
+.user-details .input-box input, 
+.user-details .input-box select {
+  height: 50px;
+  width: 100%;
+  outline: none;
+  font-size: 16px;
+  border-radius: 10px;
+  padding-left: 15px;
+  border: 1px solid #ccc;
+  border-bottom-width: 2px;
+  transition: all 0.3s ease-in-out;
+  background-color: #f9f9f9;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.user-details .input-box input:focus, 
+.user-details .input-box select:focus {
+  border-color: #ff6f61;
+  box-shadow: 0 4px 10px rgba(255, 111, 97, 0.2);
+}
+
+.otp-container {
+  display: flex;
+  align-items: center;
+}
+
+.otp-container input {
+  flex: 1;
+  margin-right: 10px;
+}
+
+.otp-button {
+  border: none;
+  padding: 10px 20px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  color: #fff;
+  background: linear-gradient(135deg, #ff6f61, #ff9d80); /* Gradient button */
+  border-radius: 10px;
+  transition: background 0.3s ease-in-out;
+}
+
+.otp-button:hover {
+  background: #e45a4e;
+}
+
+form .button {
+  height: 50px;
+  margin: 40px 0;
+}
+
+form .button input {
+  height: 100%;
+  width: 100%;
+  border-radius: 10px;
+  border: none;
+  color: #fff;
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  background: linear-gradient(135deg, #ff6f61, #feb47b);
+}
+
+form .button input:hover {
+  background: linear-gradient(-135deg, #ff6f61, #feb47b);
+  transform: translateY(-2px); /* Slight lift on hover */
+}
+
+.donation-status {
+  margin: 20px 0;
+  display: flex;
+  align-items: center;
+}
+
+.donation-status label {
+  cursor: pointer;
+}
+
+.checkbox-custom {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border: 2px solid #ff6f61;
+  border-radius: 3px;
+  margin-right: 10px;
+  position: relative;
+}
+
+input[type="checkbox"]:checked + .checkbox-custom:before {
+  content: '';
+  position: absolute;
+  left: 4px;
+  top: 1px;
+  width: 10px;
+  height: 20px;
+  border: solid #ff6f61;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+
+.login-prompt {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.login-prompt a {
+  color: #ff6f61;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s ease-in-out;
+}
+
+.login-prompt a:hover {
+  color: #e45a4e;
+  text-decoration: underline;
+}
+
+/* Scrollbar Styling */
+.content form .user-details {
+  max-height: 350px;
+  overflow-y: auto;
+}
+
+.user-details::-webkit-scrollbar {
+  width: 6px;
+}
+
+.user-details::-webkit-scrollbar-thumb {
+  background-color: #ff6f61;
+  border-radius: 10px;
+}
+
+@media(max-width: 584px) {
+  .container {
+    max-width: 100%;
+    padding: 20px;
+  }
+
+  form .user-details .input-box {
+    margin-bottom: 15px;
+    width: 100%;
+  }
+
+  .user-details::-webkit-scrollbar {
+    width: 5px;
+  }
+
+  .user-details::-webkit-scrollbar-thumb {
+    background-color: #ff6f61;
+    border-radius: 10px;
+  }
+
+  .user-details::-webkit-scrollbar-track {
+    background: #f1f1f1;
+  }
+}
+.input-box {
+  display: flex;
+  flex-direction: column;
+}
+
+.details {
+  font-weight: 500;
+  margin-bottom: 5px;
+}
+
+/* Add additional styles as needed for the new fields */
+

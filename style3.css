@@ -1,0 +1,153 @@
+/* General Styles */
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f7f9fc; /* Light background for contrast */
+    color: #333; /* Standard dark text for readability */
+}
+
+/* Hero Section Styles */
+.hero {
+    background: linear-gradient(135deg, #d50032, #ff4081); /* Gradient for visual appeal */
+    padding: 100px 20px; /* Increased padding for spaciousness */
+    text-align: center;
+    color: #fff;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+}
+
+.hero h1 {
+    font-size: 50px;
+    margin-bottom: 15px;
+    font-weight: 800; /* Strong emphasis */
+}
+
+.hero p {
+    font-size: 22px;
+    margin-top: 0;
+}
+
+/* Contact Container Styles */
+.contact-container {
+    max-width: 900px;
+    margin: 40px auto;
+    padding: 40px; /* More padding for a spacious feel */
+    background-color: #ffffff;
+    border-radius: 15px; /* Softened corners */
+    box-shadow: 0 6px 30px rgba(0, 0, 0, 0.1);
+    animation: fadeIn 1.5s ease;
+    text-align: left; /* Aligning text left for better readability */
+}
+
+.contact-container h2 {
+    font-size: 40px;
+    color: #d50032; /* Primary accent color */
+    margin-bottom: 25px;
+    font-weight: 700; /* Emphasis on section titles */
+}
+
+/* Form Styles */
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 25px; /* Space between form elements */
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group label {
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: #555;
+}
+
+.form-group input, 
+.form-group textarea {
+    width: 100%;
+    padding: 15px;
+    border: 2px solid #ccc;
+    border-radius: 10px;
+    transition: border 0.3s, box-shadow 0.3s;
+    font-size: 16px;
+}
+
+.form-group input:focus, 
+.form-group textarea:focus {
+    border: 2px solid #d50032; /* Emphasized border color */
+    box-shadow: 0 0 5px rgba(213, 0, 50, 0.5); /* Subtle glow effect */
+    outline: none; /* Removing default outline */
+}
+
+.cta-button {
+    background-color: #d50032; /* Primary button color */
+    color: #fff;
+    padding: 15px 35px;
+    border: none;
+    border-radius: 30px;
+    font-weight: 700;
+    font-size: 18px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.cta-button:hover {
+    background-color: #ff4081; /* Darker shade on hover */
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+}
+
+/* Tick Mark Styles */
+.tick-label {
+    display: flex;
+    align-items: center;
+    font-weight: 600;
+    margin-top: 10px;
+}
+
+.tick-label input {
+    width: auto; /* Adjust size for tick mark */
+    margin-right: 10px; /* Space between checkbox and label */
+}
+
+/* Footer Styles */
+footer {
+    text-align: center;
+    padding: 25px 0;
+    background-color: #f1f1f1; /* Light footer background */
+    position: relative;
+    bottom: 0;
+    width: 100%;
+    font-size: 14px;
+}
+
+/* Animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px); /* Smooth slide in */
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Media Queries for Responsiveness */
+@media (max-width: 600px) {
+    .hero h1 {
+        font-size: 36px; /* Responsive font size */
+    }
+
+    .contact-container {
+        padding: 20px; /* Reduced padding for smaller screens */
+    }
+
+    .cta-button {
+        padding: 12px 30px; /* Responsive button size */
+        font-size: 16px;
+    }
+}

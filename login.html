@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login | BloodNet</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <div class="title">Login</div>
+    <div class="content">
+      <form id="login-form">
+        <div class="user-details">
+          <div class="input-box">
+            <span class="details">Email</span>
+            <input type="email" id="login-email" placeholder="Enter your email" required>
+          </div>
+          <div class="input-box">
+            <span class="details">Password</span>
+            <input type="password" id="login-password" placeholder="Enter your password" required>
+          </div>
+        </div>
+        
+        <div class="or-separator">
+          <span>OR</span>
+        </div>
+        
+        <div class="user-details">
+          <div class="input-box">
+            <span class="details">Phone Number</span>
+            <input type="tel" id="login-phone" placeholder="Enter your number" required>
+          </div>
+          <div class="input-box">
+            <span class="details">OTP (Phone)</span>
+            <div class="otp-container">
+              <input type="text" id="login-otp" placeholder="Enter OTP" required>
+              <button type="button" class="otp-button">Send OTP</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="button">
+          <input type="submit" value="Login">
+        </div>
+        <div class="login-prompt">
+          <p>Don't have an account? <a href="registration.html">Register here</a></p>
+        </div>
+      </form>
+    </div>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
