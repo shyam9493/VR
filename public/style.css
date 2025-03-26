@@ -14,8 +14,8 @@ body {
   justify-content: center;
   align-items: center;
   padding: 10px;
-  background: linear-gradient(135deg, #ff7e5f, #feb47b); /* Enhanced gradient background */
-  transition: background 0.5s ease-in-out; /* Smooth background transition */
+  background: linear-gradient(135deg, #ff7e5f, #feb47b);
+  transition: background 0.5s ease-in-out;
 }
 
 .container {
@@ -24,8 +24,8 @@ body {
   background-color: #fff;
   padding: 40px 50px;
   border-radius: 15px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1); /* Softer and deeper shadow */
-  animation: fadeIn 0.6s ease-out; /* Smooth fade-in animation */
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  animation: fadeIn 0.6s ease-out;
 }
 
 .container .title {
@@ -33,7 +33,7 @@ body {
   font-weight: 600;
   text-align: center;
   margin-bottom: 40px;
-  color: #ff6f61; /* Brighter color for emphasis */
+  color: #ff6f61;
   position: relative;
 }
 
@@ -66,19 +66,21 @@ body {
   justify-content: space-between;
   margin: 20px 0 12px 0;
   gap: 20px;
+  max-height: 350px;
+  overflow-y: auto;
 }
 
 form .user-details .input-box {
   margin-bottom: 25px;
   width: calc(50% - 10px);
   transition: all 0.3s ease-in-out;
+  display: flex;
+  flex-direction: column;
 }
 
-form .input-box span.details {
-  display: block;
+.input-box .details {
   font-weight: 500;
   margin-bottom: 5px;
-  color: #444;
 }
 
 .user-details .input-box input, 
@@ -102,6 +104,40 @@ form .input-box span.details {
   box-shadow: 0 4px 10px rgba(255, 111, 97, 0.2);
 }
 
+/* Custom Checkbox Styling */
+.checkbox-container {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+}
+
+.checkbox-container input[type="checkbox"] {
+  display: none;
+}
+
+.checkbox-custom {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border: 2px solid #ff6f61;
+  border-radius: 3px;
+  position: relative;
+  cursor: pointer;
+}
+
+input[type="checkbox"]:checked + .checkbox-custom::before {
+  content: '';
+  position: absolute;
+  left: 6px;
+  top: 2px;
+  width: 6px;
+  height: 12px;
+  border: solid #ff6f61;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+
 .otp-container {
   display: flex;
   align-items: center;
@@ -119,7 +155,7 @@ form .input-box span.details {
   font-weight: 600;
   cursor: pointer;
   color: #fff;
-  background: linear-gradient(135deg, #ff6f61, #ff9d80); /* Gradient button */
+  background: linear-gradient(135deg, #ff6f61, #ff9d80);
   border-radius: 10px;
   transition: background 0.3s ease-in-out;
 }
@@ -149,7 +185,7 @@ form .button input {
 
 form .button input:hover {
   background: linear-gradient(-135deg, #ff6f61, #feb47b);
-  transform: translateY(-2px); /* Slight lift on hover */
+  transform: translateY(-2px);
 }
 
 .donation-status {
@@ -162,28 +198,7 @@ form .button input:hover {
   cursor: pointer;
 }
 
-.checkbox-custom {
-  display: inline-block;
-  width: 20px;
-  height: 20px;
-  border: 2px solid #ff6f61;
-  border-radius: 3px;
-  margin-right: 10px;
-  position: relative;
-}
-
-input[type="checkbox"]:checked + .checkbox-custom:before {
-  content: '';
-  position: absolute;
-  left: 4px;
-  top: 1px;
-  width: 10px;
-  height: 20px;
-  border: solid #ff6f61;
-  border-width: 0 2px 2px 0;
-  transform: rotate(45deg);
-}
-
+/* Login Prompt */
 .login-prompt {
   text-align: center;
   margin-top: 20px;
@@ -202,11 +217,6 @@ input[type="checkbox"]:checked + .checkbox-custom:before {
 }
 
 /* Scrollbar Styling */
-.content form .user-details {
-  max-height: 350px;
-  overflow-y: auto;
-}
-
 .user-details::-webkit-scrollbar {
   width: 6px;
 }
@@ -240,15 +250,3 @@ input[type="checkbox"]:checked + .checkbox-custom:before {
     background: #f1f1f1;
   }
 }
-.input-box {
-  display: flex;
-  flex-direction: column;
-}
-
-.details {
-  font-weight: 500;
-  margin-bottom: 5px;
-}
-
-/* Add additional styles as needed for the new fields */
-
