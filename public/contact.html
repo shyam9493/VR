@@ -7,14 +7,26 @@
     <title>Contact Us</title>
 </head>
 <body>
-    <div class="hero">
+    <!-- <div class="hero">
         <h2>Contact Us</h2>
         <p>We would love to hear from you!</p>
-    </div>
-
+    </div> -->
+    <header>
+        <nav>
+          <div class="logo">BloodSync</div>
+          <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="registration.html">Register</a></li>
+            <li><a href="login.html">Login</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="articles.html">Articles</a></li>
+          </ul>
+        </nav>
+        <div class="heading">Contact Us</div>
+      </header>
     <div class="contact-container">
         <h3>Get in Touch</h3>
-        <form id="contact-form" method="post" class="contact-form">
+        <form id="contact-form" class="contact-form">
             <div class="form-group">
                 <label for="name">Name</label>
                 <input type="text" id="name" required placeholder="Your Name">
@@ -36,9 +48,13 @@
     </div>
 
     <footer>
-        <p>&copy; 2024 BloodSync. All Rights Reserved.</p>
+        <p>&copy; 2025 BloodSync. All Rights Reserved.</p>
     </footer>
 
-    <script src="script.js"></script>
+    <script>
+        document.getElementById("contact-form").addEventListener("submit",()=>{
+            alert("Thank you for your valuable feedback...!");
+        });
+    </script>
 </body>
 </html>

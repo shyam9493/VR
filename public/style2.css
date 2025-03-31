@@ -240,3 +240,8 @@ footer p {
       padding: 20px;
   }
 }
+
+
+html::-webkit-scrollbar {
+  display: none;
+}

@@ -35,12 +35,12 @@
           </div>
           <div class="input-box">
             <span class="details">Phone Number</span>
-            <input type="tel" id="phone-number" placeholder="Enter your number" required>
+            <input type="tel" id="phone-number"  placeholder="Enter your number" required>
           </div>
           <div class="input-box">
             <span class="details">OTP (Phone)</span>
             <div class="otp-container">
-              <input type="text" id="otp" placeholder="Enter OTP">
+              <input type="text" id="otp" name="otp" placeholder="Enter OTP">
               <button type="button" class="otp-button">Send OTP</button>
             </div>
           </div>
@@ -101,37 +101,6 @@
     </div>
   </div>
 
-  <script>
-    document.getElementById("registration-form").addEventListener("submit", function(event) {
-      event.preventDefault();
-
-      const scriptUrl = "https://script.google.com/macros/s/AKfycbyFMmJPsrajqKXzh1RurawRvw5SOtXR9H607kueJgttCPG4bEh9GwPuWfMRpHXxehby/exec"; // Replace with your deployed Apps Script URL
-
-      const formData = new FormData();
-      formData.append("name", document.getElementById("full-name").value);
-      formData.append("gender", document.getElementById("gender").value);
-      formData.append("email", document.getElementById("email").value);
-      formData.append("phone", document.getElementById("phone-number").value);
-      formData.append("address", document.getElementById("address-line1").value + " " + document.getElementById("address-line2").value);
-      formData.append("city", document.getElementById("city").value);
-      formData.append("state", document.getElementById("state").value);
-      formData.append("postalCode", document.getElementById("postal-code").value);
-      formData.append("bloodGroup", document.getElementById("blood-group").value);
-      formData.append("donated", document.getElementById("donated").checked ? "Yes" : "No");
-
-      fetch(scriptUrl, {
-        method: "POST",
-        body: formData,
-      })
-      .then(response => response.text())
-      .then(data => {
-        alert(data); // Show success message
-      })
-      .catch(error => {
-        console.error("Error:", error);
-        alert("Failed to submit registration. Please try again.");
-      });
-    });
-  </script>
+ <script src="register.js"></script>
 </body>
 </html>
