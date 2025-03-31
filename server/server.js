@@ -19,11 +19,14 @@ const client = require("twilio")(accountSid, authToken);
 
 
 app.use(express.json());
-app.use(cors({
-    origin: "*",
-    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"], 
-    allowedHeaders: ["Content-Type", "Authorization"] 
-  }));
+app.use(
+    cors({
+        origin: "*", // Allow all origins
+        methods: ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"], // Allow all methods
+        allowedHeaders: ["Content-Type", "Authorization"], // Allow specific headers
+        credentials: true // Allow cookies if needed
+    })
+);
 
 
 
