@@ -23,6 +23,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         document.getElementById("user-name").textContent = user.fullName;
         document.getElementById("user-email").textContent = `Email: ${user.email}`;
         document.getElementById("user-location").textContent = `Location: ${user.city}`;
+        document.getElementById("user-blood").textContent = `Blood Group: ${user.bloodGroup}`;
         const statusElement=document.getElementById("status");
 
         if (user.isActive) {
