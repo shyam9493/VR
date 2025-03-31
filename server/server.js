@@ -49,16 +49,14 @@ const User = mongoose.model("User", UserSchema);
 
 
 
-app.use(express.static(path.join(__dirname, "..", "public")));
+app.use(express.static(path.join(__dirname, "public")));
 
+// Optional: Serve React/Frontend Build
+app.use(express.static(path.join(__dirname, "frontend", "build")));
 
-
-
-
-app.get("/", (req, res) => {
-    res.sendFile(path.join(__dirname, "..", "public", "index.html"));
+app.get("*", (req, res) => {
+    res.sendFile(path.join(__dirname, "frontend", "build", "index.html"));
 });
-
 
 app.post("/register", async (req, res) => {
     const { fullName,gender,email,city,phone,bloodGroup,password,donated } = req.body;
