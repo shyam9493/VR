@@ -171,10 +171,25 @@ app.get("/dashboard", async (req, res) => {
 
     try {
         const decoded = jwt.verify(token, JWT_SECRET);
+        const bloodCompatibility = {
+            "O+": ["O+", "O-"],
+            "O-": ["O-"],
+            "A+": ["A+", "A-", "O+", "O-"],
+            "A-": ["A-", "O-"],
+            "B+": ["B+", "B-", "O+", "O-"],
+            "B-": ["B-", "O-"],
+            "AB+": ["A+", "A-", "B+", "B-", "O+", "O-", "AB+", "AB-"], // Universal recipient
+            "AB-": ["AB-", "A-", "B-", "O-"]
+        };
+        
         const user = await User.findById(decoded.userId).select("-password");
+        
+        const compatibleBloodGroups = bloodCompatibility[user.bloodGroup] || []; // Get matching blood groups
+        
         const donors = await User.find({
-            _id: { $ne: user._id }, 
-            city: { $regex: new RegExp("^" + user.city.toLowerCase() + "$", "i") } 
+            _id: { $ne: user._id }, // Exclude current user
+            city: { $regex: new RegExp("^" + user.city.toLowerCase() + "$", "i") }, // Match city (case insensitive)
+            bloodGroup: { $in: compatibleBloodGroups } // Filter by compatible blood groups
         }).select("-password");
         res.json({ success:true,user, donors });
     } catch (error) {
