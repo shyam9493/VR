@@ -2,7 +2,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const registerForm = document.getElementById("registration-form");
     const otpButton = document.querySelector(".otp-button");
 
-    const API_BASE = "http://localhost:8000"; // Change to your API URL
+    const API_BASE = ""; // Change to your API URL
 
     // 📌 **Send OTP on Click**
     otpButton.addEventListener("click", async function () {
