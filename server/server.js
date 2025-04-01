@@ -125,7 +125,7 @@ app.post("/send-otp", async (req, res) => {
         var mailOptions = {
             from:  process.env.EMAIL,
             to: email,
-            subject: "Blood Sybc OTP",
+            subject: "Blood Sync OTP",
             text: `Your OTP is ${otp}`
           };
           
