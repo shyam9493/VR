@@ -2,18 +2,17 @@ document.addEventListener("DOMContentLoaded", function () {
     const registerForm = document.getElementById("registration-form");
     const otpButton = document.querySelector(".otp-button");
 
-    const API_BASE = ""; // Change to your API URL
 
     // 📌 **Send OTP on Click**
     otpButton.addEventListener("click", async function () {
-        const phone = document.getElementById("phone-number").value;
-        if (!phone) return alert("Please enter your phone number");
+        const email = document.getElementById("email").value;
+        if (!email) return alert("Please enter your phone number");
 
         try {
-            const response = await fetch(`${API_BASE}/send-otp`, {
+            const response = await fetch(`/send-otp`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ phone }),
+                body: JSON.stringify({ email }),
             });
 
             const data = await response.json();
@@ -44,17 +43,17 @@ document.addEventListener("DOMContentLoaded", function () {
 
         try {
             // 📌 **Verify OTP First**
-            const verifyResponse = await fetch(`${API_BASE}/reg/verify-otp`, {
+            const verifyResponse = await fetch(`/reg/verify-otp`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ phone, otp }),
+                body: JSON.stringify({ email, otp }),
             });
 
             const verifyData = await verifyResponse.json();
             if (!verifyData.success) return alert("Invalid OTP");
 
             // 📌 **Register User After OTP Verification**
-            const registerResponse = await fetch(`${API_BASE}/register`, {
+            const registerResponse = await fetch(`/register`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({

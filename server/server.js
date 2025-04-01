@@ -5,17 +5,22 @@ const mongoose = require("mongoose");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const cors = require("cors");
+const nodemailer = require('nodemailer');
+
 
 
 const app = express();
 const PORT = process.env.PORT || 5000;
 const JWT_SECRET = process.env.JWT_SECRET || "supersecretkey";
-const accountSid = process.env.TWILIO_ACCOUNT_SID;
-const authToken = process.env.TWILIO_AUTH_TOKEN;
-const twilioPhone = process.env.TWILIO_PHONE_NUMBER;
 
-const client = require("twilio")(accountSid, authToken);        
 
+var transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+      user: process.env.EMAIL,
+      pass: process.env.PASSWORD
+    }
+  });
 
 
 app.use(express.json());
@@ -105,30 +110,32 @@ app.post("/login", async (req, res) => {
 
 // 📌 **Send OTP for Phone Login**
 app.post("/send-otp", async (req, res) => {
-    const { phone } = req.body;
-    if (!phone) return res.status(400).json({ error: "Phone number is required" });
+    const { email } = req.body;
+    if (!email) return res.status(400).json({ error: "Phone number is required" });
 
     // const user = await User.findOne({ phone });
     // if (!user) return res.status(400).json({ error: "Phone number not registered" });
 
     const otp = Math.floor(100000 + Math.random() * 900000); // Generate 6-digit OTP
-    otpStore[phone] = otp; // Store OTP temporarily
+    otpStore[email] = otp; // Store OTP temporarily
     console.log(otp);
     
 
     try {
-        await client.messages
-        .create({
-          body: `Your OTP for BloodSync is ${otp}`,
-          to: phone,
-          from: twilioPhone, 
-        })
+        var mailOptions = {
+            from:  process.env.EMAIL,
+            to: email,
+            subject: "Blood Sybc OTP",
+            text: `Your OTP is ${otp}`
+          };
+          
+          
+        transporter.sendMail(mailOptions)
         .then((message) => {
-            console.log(message.sid);
             res.json({ success: true, message: "OTP sent successfully" });
         })
         .catch((err)=>{
-            res.json({ success: false, message: `twilio error ${err}` });
+            res.json({ success: false, message: `error ${err}` });
         });
        
     } catch (error) {
@@ -138,12 +145,12 @@ app.post("/send-otp", async (req, res) => {
 
 // 📌 **Verify OTP and Login**
 app.post("/verify-otp", async (req, res) => {
-    const { phone, otp } = req.body;
-    if (!phone || !otp) return res.status(400).json({ error: "Phone and OTP are required" });
+    const { email, otp } = req.body;
+    if (!email || !otp) return res.status(400).json({ error: "Phone and OTP are required" });
 
-    if (otpStore[phone] && otpStore[phone] == otp) {
-        delete otpStore[phone]; // Remove OTP after successful verification
-        const user = await User.findOne({ phone });
+    if (otpStore[email] && otpStore[email] == otp) {
+        delete otpStore[email]; // Remove OTP after successful verification
+        const user = await User.findOne({ email });
 
         if (!user) return res.status(400).json({ error: "User not found" });
 
@@ -154,11 +161,11 @@ app.post("/verify-otp", async (req, res) => {
     }
 });
 app.post("/reg/verify-otp", async (req, res) => {
-    const { phone, otp } = req.body;
-    if (!phone || !otp) return res.status(400).json({ error: "Phone and OTP are required" });
+    const { email, otp } = req.body;
+    if (!email || !otp) return res.status(400).json({ error: "Phone and OTP are required" });
 
-    if (otpStore[phone] && otpStore[phone] == otp) {
-        delete otpStore[phone];
+    if (otpStore[email] && otpStore[email] == otp) {
+        delete otpStore[email];
         res.json({success:true});
     } else {
         res.status(400).json({ error: "Invalid OTP" });

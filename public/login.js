@@ -24,14 +24,14 @@ document.getElementById("login-form").addEventListener("submit", async (event) =
 document.getElementById("login-form").addEventListener("submit", async (event) => {
     event.preventDefault();
     
-    const phone = document.getElementById("login-phone").value;
+    const email = document.getElementById("login-email-2").value;
     const otp = document.getElementById("login-otp").value;
     
-    if (phone && otp) {
+    if (email && otp) {
         const response = await fetch("/verify-otp", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ phone, otp })
+            body: JSON.stringify({ email, otp })
         });
 
         const data = await response.json();
@@ -45,13 +45,13 @@ document.getElementById("login-form").addEventListener("submit", async (event) =
     }
 });
 document.querySelector(".otp-button").addEventListener("click", async () => {
-    const phone = document.getElementById("login-phone").value;
-    if (!phone) return alert("Enter a valid phone number");
+    const email = document.getElementById("login-email-2").value;
+    if (!email) return alert("Enter a valid email");
 
     const response = await fetch("/send-otp", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ phone })
+        body: JSON.stringify({ email })
     });
 
     const data = await response.json();
