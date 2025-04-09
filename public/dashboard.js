@@ -51,7 +51,8 @@ document.addEventListener("DOMContentLoaded", async () => {
             const statusColor = donor.isActive ? "green" : "red";
             const contactInfo = donor.isActive 
                 ? `<p>Phone: ${donor.phone || "N/A"}</p>
-                   <p>Email: ${donor.email || "N/A"}</p>`
+                   <p>Email: ${donor.email || "N/A"}</p>
+                   <button class="cta-button"  onClick="send_request('${donor.email}','${donor.fullName}','${user.email}')">Send Request</button>`
                 : "";
         
                 donorDiv.innerHTML = `
@@ -63,20 +64,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                 <p style="margin: 5px 0;">Location: ${donor.city.toUpperCase() || "Unknown"}</p>
                 ${contactInfo}
             `;
-            
-            // Apply a fixed height and width to the donor card
-            // donorDiv.style.cssText = `
-            //     width: 250px; 
-            //     height: 150px; 
-            //     padding: 10px;
-            //     border-radius: 8px; 
-            //     box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2); 
-            //     background-color: #fff; 
-            //     display: flex; 
-            //     flex-direction: column; 
-            //     justify-content: center;
-            //     align-items: start;
-            // `;
+
             
         
             if(donor.isActive){
@@ -99,8 +87,8 @@ document.addEventListener("DOMContentLoaded", async () => {
     } catch (error) {
         console.error("Error loading dashboard:", error);
     }
+    
 });
-
 
 document.getElementById("status").addEventListener("click", function(event) {
     event.preventDefault(); // Prevent default link behavior
@@ -133,3 +121,34 @@ document.getElementById("status").addEventListener("click", function(event) {
         });
     }
 });
+
+
+function send_request(email,name,user) {
+    if(confirm(`Do you want to send request to ${name}`)){
+        fetch("/send_request", {
+            method: "POST", 
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({ email: email,user:user })
+        })
+        .then(response => {
+            // console.log(response.status);
+            if(response.status == 200){
+                alert(`Request Sent to ${email}`);
+            }else if(response.status == 400){
+                alert('Your request is still pending acceptance.')
+            }else{
+                alert("some error occured..");
+            }
+        })
+        // .then(data => {
+        //     alert(`Request Sent to ${email}`);
+        //     // window.location.href = "/dashboard.html";
+        // })
+        .catch(error => {
+            alert("Error sending request. Please try again.");
+            console.error("Error:", error);
+        });
+    }
+}
