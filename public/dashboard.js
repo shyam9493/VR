@@ -50,9 +50,7 @@ document.addEventListener("DOMContentLoaded", async () => {
             // Determine status indicator and contact info
             const statusColor = donor.isActive ? "green" : "red";
             const contactInfo = donor.isActive 
-                ? `<p>Phone: ${donor.phone || "N/A"}</p>
-                   <p>Email: ${donor.email || "N/A"}</p>
-                   <button class="cta-button"  onClick="send_request('${donor.email}','${donor.fullName}','${user.email}')">Send Request</button>`
+                ? `<button class="cta-button"  onClick="send_request('${donor.email}','${donor.fullName}','${user.email}')">Send Request</button>`
                 : "";
         
                 donorDiv.innerHTML = `
