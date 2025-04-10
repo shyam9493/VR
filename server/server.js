@@ -89,7 +89,15 @@ app.post("/register", async (req, res) => {
         }
 
         const hashedPassword = await bcrypt.hash(password, 10);
-        const newUser = new User({ fullName, email, password: hashedPassword, bloodGroup, city ,phone,donated });
+        const newUser = new User({
+  fullName: fullName.trim(),
+  email: email.trim(),
+  password: hashedPassword, // Assuming it's already hashed, no trim needed
+  bloodGroup: bloodGroup.trim(),
+  city: city.trim(),
+  phone: phone.trim(),
+  donated
+});
         await newUser.save();
         res.json({ success:true,message: "User registered successfully" });
     } catch (error) {
